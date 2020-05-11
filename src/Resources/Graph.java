@@ -10,40 +10,54 @@ public class Graph {
 	private static class Edge{
 
 		String destination;
+		int distance;
 		int speedLimit;
 		int traffic;
 
-		public Edge(String destination, int speedLimit, int traffic) {
+		public Edge(String destination, int distance, int speedLimit, int traffic) {
+			this.distance = distance;
 			this.destination = destination;
 			this.speedLimit = speedLimit;
 			this.traffic = traffic;
 		}
-	}	
+	}
+	
+	public static class Node{
+		String name;
+		int heuristic;
+		boolean isGoal;
+		
+		public Node(String name, int heuristic, boolean isGoal) {
+			this.name = name;
+			this.heuristic = heuristic;
+			this.isGoal = isGoal;
+		}
+	}
 	
 	
-	private Map<String, LinkedList<Edge>> map = new HashMap<String, LinkedList<Edge>>();
+	private Map<Node, LinkedList<Edge>> map = new HashMap<Node, LinkedList<Edge>>();
 
 	
 	
-	public void addVertex(String s) {
+	public void addVertex(Node s) {
 		map.put(s, new LinkedList<Edge>());
 	}
 	
-	public void addEdge(String destination1, String destination2, int speedLimit, int traffic) {
+	public void addEdge(Node destination1, Node destination2, int distance, int speedLimit, int traffic) {
 		if(!map.containsKey(destination1) || !map.containsKey(destination2)) {
 			throw new java.lang.Error("A destination has not been added");
 		}
 		else {
-			map.get(destination1).add(new Edge(destination2, speedLimit, traffic));
-			map.get(destination2).add(new Edge(destination1, speedLimit, traffic));
+			map.get(destination1).add(new Edge(destination2.name, distance, speedLimit, traffic));
+			map.get(destination2).add(new Edge(destination1.name, distance, speedLimit, traffic));
 		}
 	}
 	
-	public boolean hasVertex(String s) {
+	public boolean hasVertex(Node s) {
 		return map.containsKey(s);
 	}
 
-	public boolean hasEdge(String s1, String s2) {
+	public boolean hasEdge(Node s1, Node s2) {
 		for(Edge edge : map.get(s1)) {
 			if(edge.destination.equals(s2))
 				return true;
@@ -51,7 +65,9 @@ public class Graph {
 		return false;
 	}
 
-
+	public LinkedList<Edge> getEdges(Node s){
+		return map.get(s);
+	}
 
 
 
