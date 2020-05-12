@@ -7,14 +7,14 @@ import java.util.Map;
 public class Graph {
 
 
-	private static class Edge{
+	public static class Edge{
 
-		String destination;
+		Node destination;
 		int distance;
 		int speedLimit;
 		int traffic;
 
-		public Edge(String destination, int distance, int speedLimit, int traffic) {
+		public Edge(Node destination, int distance, int speedLimit, int traffic) {
 			this.distance = distance;
 			this.destination = destination;
 			this.speedLimit = speedLimit;
@@ -48,12 +48,12 @@ public class Graph {
 			throw new java.lang.Error("A destination has not been added");
 		}
 		else {
-			map.get(destination1).add(new Edge(destination2.name, distance, speedLimit, traffic));
-			map.get(destination2).add(new Edge(destination1.name, distance, speedLimit, traffic));
+			map.get(destination1).add(new Edge(destination2, distance, speedLimit, traffic));
+			map.get(destination2).add(new Edge(destination1, distance, speedLimit, traffic));
 		}
 	}
 	
-	public boolean hasVertex(Node s) {
+	public boolean hasVertex(Node s) {	
 		return map.containsKey(s);
 	}
 
@@ -68,9 +68,6 @@ public class Graph {
 	public LinkedList<Edge> getEdges(Node s){
 		return map.get(s);
 	}
-
-
-
 
 
 }
