@@ -7,7 +7,7 @@ import java.util.Map;
 public class Graph {
 
 
-	private static class Edge{
+	public static class Edge{
 
 		String destination;
 		int distance;
