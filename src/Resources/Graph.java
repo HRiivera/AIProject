@@ -9,14 +9,14 @@ public class Graph {
 
 	public static class Edge{
 
-		String destination;
+		Node destination;
 		int distance;
 		int speedLimit;
-		int traffic;
+		float traffic;
 
-		public Edge(String destination, int distance, int speedLimit, int traffic) {
-			this.distance = distance;
+		public Edge(Node destination, int distance, int speedLimit, float traffic) {
 			this.destination = destination;
+			this.distance = distance;
 			this.speedLimit = speedLimit;
 			this.traffic = traffic;
 		}
@@ -43,13 +43,13 @@ public class Graph {
 		map.put(s, new LinkedList<Edge>());
 	}
 	
-	public void addEdge(Node destination1, Node destination2, int distance, int speedLimit, int traffic) {
+	public void addEdge(Node destination1, Node destination2, int distance, int speedLimit, float traffic) {
 		if(!map.containsKey(destination1) || !map.containsKey(destination2)) {
 			throw new java.lang.Error("A destination has not been added");
 		}
 		else {
-			map.get(destination1).add(new Edge(destination2.name, distance, speedLimit, traffic));
-			map.get(destination2).add(new Edge(destination1.name, distance, speedLimit, traffic));
+			map.get(destination1).add(new Edge(destination2, distance, speedLimit, traffic));
+			map.get(destination2).add(new Edge(destination1, distance, speedLimit, traffic));
 		}
 	}
 	
