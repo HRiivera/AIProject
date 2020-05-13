@@ -51,7 +51,7 @@ public class main {
 		g.addEdge(Quebradillas, Camuy, 7, 45, 0.9f);
 		g.addEdge(Camuy, Lares, 17, 35, 0.8f);
 		g.addEdge(Camuy, Hatillo, 2, 45, 0.8f);
-		g.addEdge(Hatillo, Arecibo, distance, speedLimit, traffic);
+//		g.addEdge(Hatillo, Arecibo, distance, speedLimit, traffic);
 		
 	}
 	
