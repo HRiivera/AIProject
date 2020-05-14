@@ -114,9 +114,9 @@ public class main {
 		g.addEdge(Lajas, Guanica, 11.27f, 35, 0.9f);
 		g.addEdge(Guanica, Yauco, 5.81f, 45, 0.9f);
 		g.addEdge(Yauco, Guayanilla, 4.02f, 45, 1f);
-		g.addEdge(destination1, destination2, distance, speedLimit, traffic);
-		g.addEdge(destination1, destination2, distance, speedLimit, traffic);
-		g.addEdge(destination1, destination2, distance, speedLimit, traffic);
+		g.addEdge(Guayanilla, Penuelas, 5.30f, 45, 1f);
+		g.addEdge(Penuelas, Ponce, 8.21f, 45, 1f);
+
 		
 	}
 	
