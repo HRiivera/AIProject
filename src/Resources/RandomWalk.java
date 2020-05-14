@@ -1,8 +1,10 @@
 package Resources;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+
 
 import Resources.Graph.Edge;
 import Resources.Graph.Node;
@@ -18,7 +20,7 @@ public class RandomWalk {
 	 * Nodes as a weight for the randomization.
 	 * Backtracking is allowed.
 	 */
-	public ArrayList<String> RandomWalk(Node current, Map<Node, LinkedList<Edge>> map, ArrayList<String> Explored) {
+	public Map<String, Integer> RandomWalk(Node current, Map<Node, LinkedList<Edge>> map, Map<String, Integer> Explored) {
 		
 		// List used to hold weights and results for randomization
 		RandomCollection<Node> randomList = new RandomCollection<>();
@@ -26,13 +28,18 @@ public class RandomWalk {
 		LinkedList<Edge> Frontier = map.get(current);
 		// Refers to the node to be visited next
 		Node nextNode;
-	
-		Explored.add(current.name);
+		// Map that holds the path names and their values in terms of distance
+		Map<String, Integer> Result = new HashMap<String, Integer>();
 		
 		// Checks if the current Node is the goal or not
-		// Returns Explored if it is
+		// Returns Result if it is
 		if(current.isGoal = true) {
-			return Explored;
+			// If the starting node is the goal, set the name and the distance traversed to 0
+			if(Result.isEmpty()) {
+				Result.put(current.name, 0);
+			}
+			// Returns path traversed and distances of each chosen node
+			return Result;
 		}
 		else {
 			// Iterates through the map's edges to set the weights for randomList
@@ -41,10 +48,19 @@ public class RandomWalk {
 			for(int i = 0; i < Frontier.size(); i++) {
 				randomList.add(Frontier.get(i).distance, Frontier.get(i).destination);
 			}	
+			
+			
 			// Rolls for the node to be visited next
 			nextNode = randomList.next();
 			
+			// Once a node has been chosen by the randomization, finds which path was chosen
+			// and gets the distance traveled and then adds it to Result
+			for(int k = 0; k < Frontier.size(); k++) {
+				if(Frontier.get(k).destination == nextNode) {
+					Result.put(current.name, Frontier.get(k).distance);
+				}
+			}
 		}
-		return RandomWalk(nextNode, map, Explored);
+		return RandomWalk(nextNode, map, Result);
 	}
 }
