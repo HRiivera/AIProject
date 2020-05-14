@@ -80,7 +80,43 @@ public class main {
 		g.addEdge(Quebradillas, Camuy, 5.92f, 45, 0.9f);
 		g.addEdge(Camuy, Lares, 13.27f, 35, 1f);
 		g.addEdge(Camuy, Hatillo, 1.31f, 45, 0.8f);
-		g.addEdge(Hatillo, Arecibo, 8, 45, 0.8f);
+		g.addEdge(Hatillo, Arecibo, 7.28f, 45, 0.9f);
+		g.addEdge(Rincon, Aguada, 4.9f, 35, 1f);
+		g.addEdge(Aguada, Moca, 5.05f, 35, 1f);
+		g.addEdge(Aguada, Anasco, 7.21f, 45, 0.8f);
+		g.addEdge(Moca, Anasco, 7.76f, 35, 0.9f);
+		g.addEdge(Moca, SanSebastian, 8.8f, 35, 0.9f);
+		g.addEdge(SanSebastian, LasMarias, 5.44f, 35, 0.8f);
+		g.addEdge(SanSebastian, Lares, 8.22f, 45, 0.8f);
+		g.addEdge(Lares, LasMarias, 7.61f, 35, 0.8f);
+		g.addEdge(Lares, Utuado, 11.75f, 35, 0.9f);
+		g.addEdge(Lares, Adjuntas, 13.68f, 35, 0.8f);
+		g.addEdge(Utuado, Adjuntas, 7.24f, 35, 1f);
+		g.addEdge(Utuado, Jayuya, 7.86f, 35, 0.9f);
+		g.addEdge(Anasco, Mayaguez, 5.81f, 45, 0.9f);
+		g.addEdge(Anasco, LasMarias, 10.37f, 35, 0.8f);
+		g.addEdge(Mayaguez, Hormigueros, 4.42f, 45, 0.8f);
+		g.addEdge(Mayaguez, LasMarias, 16.7f, 35, 0.8f);
+		g.addEdge(LasMarias, Maricao, 7.6f, 35, 0.9f);
+		g.addEdge(LasMarias, Lares, 7.65f, 35, 0.8f);
+		g.addEdge(Maricao, SanGerman, 7.99f, 35, 0.8f);
+		g.addEdge(Maricao, SabanaGrande, 7.28f, 35, 0.8f);
+		g.addEdge(Adjuntas, Penuelas, 7.33f, 35, 0.8f);
+		g.addEdge(Jayuya, Ponce, 14.41f, 35, 1f);
+		g.addEdge(Hormigueros, CaboRojo, 3.92f, 45, 0.9f);
+		g.addEdge(Hormigueros, SanGerman, 6.97f, 45, 1f);
+		g.addEdge(CaboRojo, SanGerman, 6.89f, 45, 1f);
+		g.addEdge(CaboRojo, Lajas, 6.21f, 45, 0.9f);
+		g.addEdge(SanGerman, Lajas, 2.44f, 35, 0.9f);
+		g.addEdge(SanGerman, SabanaGrande, 5.30f, 45, 1f);
+		g.addEdge(SabanaGrande, Guanica, 8.02f, 45, 0.9f);
+		g.addEdge(SabanaGrande, Yauco, 7.81f, 45, 1f);
+		g.addEdge(Lajas, Guanica, 11.27f, 35, 0.9f);
+		g.addEdge(Guanica, Yauco, 5.81f, 45, 0.9f);
+		g.addEdge(Yauco, Guayanilla, 4.02f, 45, 1f);
+		g.addEdge(destination1, destination2, distance, speedLimit, traffic);
+		g.addEdge(destination1, destination2, distance, speedLimit, traffic);
+		g.addEdge(destination1, destination2, distance, speedLimit, traffic);
 		
 	}
 	
