@@ -102,7 +102,6 @@ public class main {
 		g.addEdge(Mayaguez, Hormigueros, 4.42f, 45, 0.8f);
 		g.addEdge(Mayaguez, LasMarias, 16.7f, 35, 0.8f);
 		g.addEdge(LasMarias, Maricao, 7.6f, 35, 0.9f);
-		g.addEdge(LasMarias, Lares, 7.65f, 35, 0.8f);
 		g.addEdge(Maricao, SanGerman, 7.99f, 35, 0.8f);
 		g.addEdge(Maricao, SabanaGrande, 7.28f, 35, 0.8f);
 		g.addEdge(Adjuntas, Penuelas, 7.33f, 35, 0.8f);

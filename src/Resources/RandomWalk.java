@@ -59,7 +59,6 @@ public class RandomWalk {
 			// Rolls for the node to be visited next
 			nextNode = randomList.next();
 			
-			
 			if(Result.isEmpty()) {
 				
 				pair.setFirst(current.name);
