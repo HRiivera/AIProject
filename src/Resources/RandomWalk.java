@@ -15,8 +15,8 @@ public class RandomWalk {
 	
 	
 	/*
-	 * Recursively accepts a node and a map of a graph and returns an ArrayList of
-	 * the names of the Nodes in the path. It uses the distance between 
+	 * Recursively accepts a node and a map of a graph and returns a Map of
+	 * the names of the Nodes in the path and their distances. It uses the distance between 
 	 * Nodes as a weight for the randomization.
 	 * Backtracking is allowed.
 	 */
