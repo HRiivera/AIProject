@@ -20,6 +20,10 @@ public class Graph {
 			this.speedLimit = speedLimit;
 			this.traffic = traffic;
 		}
+		
+		public float getCost() {
+			return (this.distance/(this.speedLimit*this.traffic) + this.destination.heuristic);
+		}
 	}
 	
 	public static class Node{
@@ -68,6 +72,8 @@ public class Graph {
 	public LinkedList<Edge> getEdges(Node s){
 		return map.get(s);
 	}
+	
+	
 
 
 }

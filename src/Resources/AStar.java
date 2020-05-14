@@ -47,12 +47,12 @@ public class AStar {
 
         	LinkedList<Edge> edgeList = graph.getEdges(nodeList.remove(g)); //Create a linked list of the nodes
         																	//connected to the node I'm looking at
-        	float shortestEdge = edgeList.get(0).distance/(edgeList.get(0).speedLimit*edgeList.get(0).traffic) + edgeList.get(0).destination.heuristic;
+        	float shortestEdge = edgeList.get(0).getCost();
         	int d = 0;
         	
         	for(int i = 0; i < edgeList.size(); i++) { //Looks through the edges of the node to find the shortest
         		nodeList.add(edgeList.get(i).destination); //Add all destinations to the list to look at later
-        		if(edgeList.get(i).distance + edgeList.get(i).destination.heuristic < shortestEdge) {
+        		if(edgeList.get(i).getCost() < shortestEdge) {
         			shortestEdge = edgeList.get(i).distance;
         			d = i;
         		}
