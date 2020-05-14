@@ -69,5 +69,8 @@ public class Graph {
 		return map.get(s);
 	}
 
+	public Map<Node, LinkedList<Edge>> getMap() {
+		return map;
+	}
 
 }

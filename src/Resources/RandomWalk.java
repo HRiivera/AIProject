@@ -16,18 +16,17 @@ public class RandomWalk {
 	 * Recursively accepts a node and a map of a graph and returns an ArrayList of
 	 * the names of the Nodes in the path. It uses the distance between 
 	 * Nodes as a weight for the randomization.
+	 * Backtracking is allowed.
 	 */
-	public ArrayList RandomWalk(Node current, Map<Node, LinkedList<Edge>> map) {
+	public ArrayList<String> RandomWalk(Node current, Map<Node, LinkedList<Edge>> map, ArrayList<String> Explored) {
 		
-		// List to be returned
-		ArrayList<String> Explored = new ArrayList<String>();
 		// List used to hold weights and results for randomization
 		RandomCollection<Node> randomList = new RandomCollection<>();
 		// List to hold the Edges connected to the selected node
 		LinkedList<Edge> Frontier = map.get(current);
 		// Refers to the node to be visited next
 		Node nextNode;
-		
+	
 		Explored.add(current.name);
 		
 		// Checks if the current Node is the goal or not
@@ -37,12 +36,15 @@ public class RandomWalk {
 		}
 		else {
 			// Iterates through the map's edges to set the weights for randomList
+			// Weight depends on the distance to the next node
+			// That weight is used to determine the probability of being chosen
 			for(int i = 0; i < Frontier.size(); i++) {
-				randomList.add(map.get(current).get(i).distance, map.get(current).get(i).destination);
+				randomList.add(Frontier.get(i).distance, Frontier.get(i).destination);
 			}	
 			// Rolls for the node to be visited next
 			nextNode = randomList.next();
+			
 		}
-		return RandomWalk(nextNode, map);
+		return RandomWalk(nextNode, map, Explored);
 	}
 }

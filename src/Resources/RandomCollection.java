@@ -4,6 +4,10 @@ import java.util.NavigableMap;
 import java.util.Random;
 import java.util.TreeMap;
 
+/*
+ * Handles the randomization aspect needed for RandomWalk
+ * Uses weights to make a choice
+ */
 public class RandomCollection<E> {
     private final NavigableMap<Double, E> map = new TreeMap<Double, E>();
     private final Random random;
