@@ -7,7 +7,7 @@ import java.util.Map;
 public class Graph {
 
 
-	private static class Edge{
+	public static class Edge{
 
 		Node destination;
 		float distance;
@@ -68,9 +68,6 @@ public class Graph {
 	public LinkedList<Edge> getEdges(Node s){
 		return map.get(s);
 	}
-
-
-
 
 
 }
