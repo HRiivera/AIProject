@@ -10,24 +10,30 @@ public class Graph {
 	public static class Edge{
 
 		Node destination;
-		int distance;
+		float distance;
 		int speedLimit;
-		int traffic;
+		float traffic;
 
-		public Edge(Node destination, int distance, int speedLimit, int traffic) {
-			this.distance = distance;
+
+		public Edge(Node destination, float distance, int speedLimit, float traffic) {
+
 			this.destination = destination;
+			this.distance = distance;
 			this.speedLimit = speedLimit;
 			this.traffic = traffic;
+		}
+		
+		public float getCost() {
+			return (this.distance/(this.speedLimit*this.traffic) + this.destination.heuristic);
 		}
 	}
 	
 	public static class Node{
 		String name;
-		int heuristic;
+		float heuristic;
 		boolean isGoal;
 		
-		public Node(String name, int heuristic, boolean isGoal) {
+		public Node(String name, float heuristic, boolean isGoal) {
 			this.name = name;
 			this.heuristic = heuristic;
 			this.isGoal = isGoal;
@@ -43,7 +49,7 @@ public class Graph {
 		map.put(s, new LinkedList<Edge>());
 	}
 	
-	public void addEdge(Node destination1, Node destination2, int distance, int speedLimit, int traffic) {
+	public void addEdge(Node destination1, Node destination2, float distance, int speedLimit, float traffic) {
 		if(!map.containsKey(destination1) || !map.containsKey(destination2)) {
 			throw new java.lang.Error("A destination has not been added");
 		}
@@ -69,8 +75,8 @@ public class Graph {
 		return map.get(s);
 	}
 
-	public Map<Node, LinkedList<Edge>> getMap() {
+	public Map<Node, LinkedList<Edge>> getMap(){
 		return map;
 	}
-
+	
 }
