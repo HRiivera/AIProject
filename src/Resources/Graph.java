@@ -14,7 +14,9 @@ public class Graph {
 		int speedLimit;
 		float traffic;
 
+
 		public Edge(Node destination, float distance, int speedLimit, float traffic) {
+
 			this.destination = destination;
 			this.distance = distance;
 			this.speedLimit = speedLimit;
@@ -57,7 +59,7 @@ public class Graph {
 		}
 	}
 	
-	public boolean hasVertex(Node s) {
+	public boolean hasVertex(Node s) {	
 		return map.containsKey(s);
 	}
 
@@ -72,8 +74,9 @@ public class Graph {
 	public LinkedList<Edge> getEdges(Node s){
 		return map.get(s);
 	}
-	
-	
 
-
+	public Map<Node, LinkedList<Edge>> getMap(){
+		return map;
+	}
+	
 }
