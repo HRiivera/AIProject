@@ -1,15 +1,12 @@
 package Resources;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
 
 import Resources.Graph.Edge;
 import Resources.Graph.Node;
-import Resources.RandomCollection;
-import Resources.Pair;
 
 
 public class RandomWalk {
@@ -21,7 +18,7 @@ public class RandomWalk {
 	 * Nodes as a weight for the randomization.
 	 * Backtracking is allowed.
 	 */
-	public ArrayList<Pair<String, Float>> RandomWalk(Node current, Map<Node, LinkedList<Edge>> map, ArrayList<Pair<String, Float>> Result, float goalDist) {
+	public ArrayList<Triple<String, Float, Float>> RandomWalk(Node current, Map<Node, LinkedList<Edge>> map, ArrayList<Triple<String, Float, Float>> Result, float goalDist, float totalCost) {
 		
 		// List used to hold weights and results for randomization
 		RandomCollection<Node> randomList = new RandomCollection<>();
@@ -30,17 +27,17 @@ public class RandomWalk {
 		// Refers to the node to be visited next
 		Node nextNode;
 		// Pair where the current node and the distance needed to reach it are saved
-		Pair<String, Float> pair = new Pair<String, Float>(null, null);
-		
+		Triple<String, Float, Float> triple = new Triple<String, Float, Float>(null, null, null);
 		
 		// Checks if the current Node is the goal or not
 		// Returns Result if it is
 		if(current.isGoal == true) {
 			
-			pair.setFirst(current.name);
-			pair.setSecond(goalDist);
+			triple.setFirst(current.name);
+			triple.setSecond(goalDist);
+			triple.setThird(totalCost);
 			
-			Result.add(pair);
+			Result.add(triple);
 			
 			
 			return Result;
@@ -52,36 +49,30 @@ public class RandomWalk {
 			// Weight depends on the distance to the next node
 			// That weight is used to determine the probability of being chosen
 			for(int i = 0; i < Frontier.size(); i++) {
-				randomList.add(Frontier.get(i).distance, Frontier.get(i).destination);
+				randomList.add(Frontier.get(i).distance/(Frontier.get(i).speedLimit*Frontier.get(i).traffic), Frontier.get(i).destination);
 			}	
 			
 			
 			// Rolls for the node to be visited next
 			nextNode = randomList.next();
 			
-			if(Result.isEmpty()) {
-				
-				pair.setFirst(current.name);
-				pair.setSecond((float) 0.0);
-				
-				Result.add(pair);
-			}
-			else {
-				// Once a node has been chosen by the randomization, finds which path was chosen
-				// and gets the distance traveled and then adds it to Result
-				for(int k = 0; k < Frontier.size(); k++) {
-					if(Frontier.get(k).destination == nextNode) {
+			// Once a node has been chosen by the randomization, finds which path was chosen
+			// and gets the distance traveled and then adds it to Result
+			for(int k = 0; k < Frontier.size(); k++) {
+				if(Frontier.get(k).destination == nextNode) {
 						
-						pair.setFirst(current.name);
-						pair.setSecond(Frontier.get(k).distance);
+					triple.setFirst(current.name);
+					triple.setSecond(Frontier.get(k).distance);
 						
-						goalDist = pair.getSecond();
-						
-						Result.add(pair);
-					}
+					goalDist = triple.getSecond();
+					totalCost = goalDist/(Frontier.get(k).speedLimit*Frontier.get(k).traffic);	
+					
+					triple.setThird(totalCost);
+					
+					Result.add(triple);
 				}
 			}
 		}
-		return RandomWalk(nextNode, map, Result, goalDist);
+		return RandomWalk(nextNode, map, Result, goalDist, totalCost);
 	}
 }
