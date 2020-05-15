@@ -145,7 +145,7 @@ public class main {
 		System.out.println("RandomWalk Total Runtime: " + duration + " nanoseconds\n");
 		
 		startTime = System.nanoTime();
-		RouteNode pathAStar = new AStar().aStarSearch(g, CaboRojo);
+		RouteNode pathAStar = new AStar().aStarSearch(g, Camuy);
 		float pathCost = pathAStar.getPathCost();
 		while(pathAStar!=null) {
 			System.out.println(pathAStar.getCurrentNode().getName() + " : " + pathAStar.getPathCost());
