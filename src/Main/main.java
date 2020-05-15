@@ -140,7 +140,7 @@ public class main {
 		
 		// Prints all locations visited in Explored for Randomwalk
 		// Except the last one
-		for(int i = 0; i < Explored.size(); i++) {
+		for(int i = 0; i < Explored.size() - 1; i++) {
 			System.out.println(Explored.get(i).toStringFirst());
 			System.out.println(Explored.get(i).toStringSecond());
 			System.out.println(Explored.get(i).toStringThird());

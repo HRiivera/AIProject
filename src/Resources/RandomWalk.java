@@ -1,15 +1,12 @@
 package Resources;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
 
 import Resources.Graph.Edge;
 import Resources.Graph.Node;
-import Resources.RandomCollection;
-import Resources.Triple;
 
 
 public class RandomWalk {
