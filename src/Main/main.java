@@ -149,11 +149,18 @@ public class main {
 			pathSum += Explored.get(i).getSecond();
 			costSum += Explored.get(i).getThird();
 		}
+	
+		// Prints only the last node visited
+		System.out.println(Explored.get(Explored.size()-1).toStringFirst());
 		
-
-		System.out.println("\nTotal cost to goal: " + pathSum);
+		System.out.println("\nPath Cost to goal: " + pathSum);
+		
+		System.out.println("Total Travel Cost to goal: " + costSum);
+		
 		System.out.println("RandomWalk Total Runtime: " + duration + " nanoseconds\n");
 		
+
+
 		startTime = System.nanoTime();
 		RouteNode pathAStar = new AStar().aStarSearch(g, Camuy);
 		float pathCost = pathAStar.getPathCost();
@@ -165,16 +172,7 @@ public class main {
 		duration = System.nanoTime() - startTime;
 		
 		System.out.println("\nTotal cost to goal: " + pathCost);
-
-		// Prints only the last node visited
-		System.out.println(Explored.get(Explored.size()-1).toStringFirst());
-		
-		System.out.println("\nPath Cost to goal: " + pathSum);
-		
-		System.out.println("Total Travel Cost to goal: " + costSum);
-		
-
-		System.out.println("RandomWalk Total Runtime: " + duration + " nanoseconds");
+		System.out.println("A* Total Runtime: " + duration + " nanoseconds");
 		
 		
 	}
