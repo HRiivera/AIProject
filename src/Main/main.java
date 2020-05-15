@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import Resources.AStar;
+import Resources.AStar.RouteNode;
 import Resources.Graph;
 import Resources.Pair;
 import Resources.Graph.Edge;
@@ -139,7 +141,21 @@ public class main {
 		}
 		
 		System.out.println("\nTotal cost to goal: " + sum);
+		System.out.println("RandomWalk Total Runtime: " + duration + " nanoseconds\n");
+		
+		startTime = System.nanoTime();
+		RouteNode pathAStar = new AStar().aStarSearch(g, CaboRojo);
+		float pathCost = pathAStar.getPathCost();
+		while(pathAStar!=null) {
+			System.out.println(pathAStar.getCurrentNode().getName() + " : " + pathAStar.getPathCost());
+			pathAStar = pathAStar.getPreviousNode();
+		}
+		
+		duration = System.nanoTime() - startTime;
+		
+		System.out.println("\nTotal cost to goal: " + pathCost);
 		System.out.println("RandomWalk Total Runtime: " + duration + " nanoseconds");
+		
 		
 	}
 	

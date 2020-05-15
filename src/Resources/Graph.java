@@ -38,6 +38,10 @@ public class Graph {
 			this.heuristic = heuristic;
 			this.isGoal = isGoal;
 		}
+		
+		public String getName() {
+			return this.name;
+		}
 	}
 	
 	

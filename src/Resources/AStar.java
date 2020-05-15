@@ -15,7 +15,7 @@ import java.util.PriorityQueue;
 
 public class AStar {
 
-	private class RouteNode{
+	public class RouteNode{
 		RouteNode previousNode;
 		Node currentNode;
 		float pathCost;
@@ -25,6 +25,19 @@ public class AStar {
 			this.previousNode = previousNode;
 			this.pathCost = pathCost;
 		}
+		
+		public Node getCurrentNode() {
+			return this.currentNode;
+		}
+		
+		public RouteNode getPreviousNode() {
+			return this.previousNode;
+		}
+		
+		public float getPathCost() {
+			return this.pathCost;
+		}
+		
 	}
 
 
@@ -59,13 +72,17 @@ public class AStar {
 			//connected to the node I'm looking at
 
 			for(Edge e : edgeList) { //Looks through the edges of the node to find the shortest
-				if(!e.destination.equals(lowestNode.previousNode.currentNode)) {
+				if(lowestNode.previousNode == null){
+					float pathCost = e.distance/(e.speedLimit*e.traffic) + lowestNode.pathCost;
+					nodeList.add(new RouteNode(e.destination, lowestNode, pathCost));
+				}
+				else if(!e.destination.equals(lowestNode.previousNode.currentNode)) {
 
 					float pathCost = e.distance/(e.speedLimit*e.traffic) + lowestNode.pathCost;
 					nodeList.add(new RouteNode(e.destination, lowestNode, pathCost)); //Add all destinations to the list to look at later
-
 				}
 			}
+			nodeList.remove(lowestNode);
 		}
 		return null;
 	}
