@@ -151,7 +151,7 @@ public class main {
 		}
 		
 
-		System.out.println("\nTotal cost to goal: " + sum);
+		System.out.println("\nTotal cost to goal: " + pathSum);
 		System.out.println("RandomWalk Total Runtime: " + duration + " nanoseconds\n");
 		
 		startTime = System.nanoTime();
