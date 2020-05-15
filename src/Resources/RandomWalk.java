@@ -21,7 +21,7 @@ public class RandomWalk {
 	 * Nodes as a weight for the randomization.
 	 * Backtracking is allowed.
 	 */
-	public ArrayList<Pair<String, Float>> RandomWalk(Node current, Map<Node, LinkedList<Edge>> map, ArrayList<Pair<String, Float>> Result) {
+	public ArrayList<Pair<String, Float>> RandomWalk(Node current, Map<Node, LinkedList<Edge>> map, ArrayList<Pair<String, Float>> Result, float goalDist) {
 		
 		// List used to hold weights and results for randomization
 		RandomCollection<Node> randomList = new RandomCollection<>();
@@ -31,14 +31,14 @@ public class RandomWalk {
 		Node nextNode;
 		// Pair where the current node and the distance needed to reach it are saved
 		Pair<String, Float> pair = new Pair<String, Float>(null, null);
-	
+		
 		
 		// Checks if the current Node is the goal or not
 		// Returns Result if it is
 		if(current.isGoal == true) {
 			
 			pair.setFirst(current.name);
-			pair.setSecond((float) 0.0);
+			pair.setSecond(goalDist);
 			
 			Result.add(pair);
 			
@@ -75,11 +75,13 @@ public class RandomWalk {
 						pair.setFirst(current.name);
 						pair.setSecond(Frontier.get(k).distance);
 						
+						goalDist = pair.getSecond();
+						
 						Result.add(pair);
 					}
 				}
 			}
 		}
-		return RandomWalk(nextNode, map, Result);
+		return RandomWalk(nextNode, map, Result, goalDist);
 	}
 }

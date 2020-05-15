@@ -125,11 +125,12 @@ public class main {
 		ArrayList<Pair<String, Float>> Explored = new ArrayList<Pair<String, Float>>();
 		RandomWalk random = new RandomWalk();
 		float sum = 0;
+		float dist = 0;
 
 		// Sets start time for the algorithm's runtime
 		long startTime = System.nanoTime();
 		
-		Explored = random.RandomWalk(Camuy, g.getMap(), Explored);
+		Explored = random.RandomWalk(Camuy, g.getMap(), Explored, dist);
 		
 		// How long the algorithm took to run
 		long duration = System.nanoTime() - startTime;
