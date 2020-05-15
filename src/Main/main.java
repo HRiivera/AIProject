@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import Resources.Graph;
-import Resources.Pair;
+import Resources.Triple;
 import Resources.Graph.Edge;
 import Resources.Graph.Node;
 import Resources.RandomWalk;
@@ -120,26 +120,41 @@ public class main {
 		g.addEdge(Guayanilla, Penuelas, 5.30f, 45, 1f);
 		g.addEdge(Penuelas, Ponce, 8.21f, 45, 1f);
 		
-		ArrayList<Pair<String, Float>> Explored = new ArrayList<Pair<String, Float>>();
+		ArrayList<Triple<String, Float, Float>> Explored = new ArrayList<Triple<String, Float, Float>>();
 		RandomWalk random = new RandomWalk();
-		float sum = 0;
+		float pathSum = 0;
+		float costSum = 0;
 		float dist = 0;
+		// total cost of travel
+		// distance/(speedLimit*traffic)
+		float totalCost = 0;
 
 		// Sets start time for the algorithm's runtime
 		long startTime = System.nanoTime();
 		
-		Explored = random.RandomWalk(Camuy, g.getMap(), Explored, dist);
+		Explored = random.RandomWalk(Camuy, g.getMap(), Explored, dist, totalCost);
 		
 		// How long the algorithm took to run
 		long duration = System.nanoTime() - startTime;
 		
 		
+		// Prints all locations visited in Explored for Randomwalk
+		// Except the last one
 		for(int i = 0; i < Explored.size(); i++) {
-			System.out.println(Explored.get(i).toString());
-			sum += Explored.get(i).getSecond();
+			System.out.println(Explored.get(i).toStringFirst());
+			System.out.println(Explored.get(i).toStringSecond());
+			System.out.println(Explored.get(i).toStringThird());
+			pathSum += Explored.get(i).getSecond();
+			costSum += Explored.get(i).getThird();
 		}
 		
-		System.out.println("\nTotal cost to goal: " + sum);
+		// Prints only the last node visited
+		System.out.println(Explored.get(Explored.size()-1).toStringFirst());
+		
+		System.out.println("\nPath Cost to goal: " + pathSum);
+		
+		System.out.println("Total Travel Cost to goal: " + costSum);
+		
 		System.out.println("RandomWalk Total Runtime: " + duration + " nanoseconds");
 		
 	}
